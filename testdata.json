@@ -1,0 +1,292 @@
+{
+    "visibility": {
+        "1.0": {
+            "value": true,
+            "inTangentType": "fixed",
+            "inAngle": 0.0,
+            "inWeight": 1.0,
+            "outTangentType": "fixed",
+            "outAngle": 0.0,
+            "outWeight": 1.0
+        },
+        "50.0": {
+            "value": true,
+            "inTangentType": "fixed",
+            "inAngle": 0.0,
+            "inWeight": 1.0,
+            "outTangentType": "fixed",
+            "outAngle": 0.0,
+            "outWeight": 1.0
+        },
+        "95.0": {
+            "value": true,
+            "inTangentType": "fixed",
+            "inAngle": 0.0,
+            "inWeight": 1.0,
+            "outTangentType": "fixed",
+            "outAngle": 0.0,
+            "outWeight": 1.0
+        }
+    },
+    "translateX": {
+        "1.0": {
+            "value": 0.0,
+            "inTangentType": "fixed",
+            "inAngle": 0.0,
+            "inWeight": 1.0,
+            "outTangentType": "fixed",
+            "outAngle": 0.0,
+            "outWeight": 1.0
+        },
+        "50.0": {
+            "value": 11.06642784231406,
+            "inTangentType": "fixed",
+            "inAngle": 8.123574099856366,
+            "inWeight": 1.0,
+            "outTangentType": "fixed",
+            "outAngle": 8.123574099856365,
+            "outWeight": 1.0
+        },
+        "95.0": {
+            "value": 13.41764271253213,
+            "inTangentType": "fixed",
+            "inAngle": 0.0,
+            "inWeight": 1.0,
+            "outTangentType": "fixed",
+            "outAngle": 0.0,
+            "outWeight": 1.0
+        }
+    },
+    "translateY": {
+        "1.0": {
+            "value": 0.0,
+            "inTangentType": "fixed",
+            "inAngle": 0.0,
+            "inWeight": 1.0,
+            "outTangentType": "fixed",
+            "outAngle": 0.0,
+            "outWeight": 1.0
+        },
+        "50.0": {
+            "value": 8.71194993374163,
+            "inTangentType": "fixed",
+            "inAngle": 0.0,
+            "inWeight": 1.0,
+            "outTangentType": "fixed",
+            "outAngle": 0.0,
+            "outWeight": 1.0
+        },
+        "95.0": {
+            "value": -6.050395069437355,
+            "inTangentType": "fixed",
+            "inAngle": 0.0,
+            "inWeight": 1.0,
+            "outTangentType": "fixed",
+            "outAngle": 0.0,
+            "outWeight": 1.0
+        }
+    },
+    "translateZ": {
+        "1.0": {
+            "value": 0.0,
+            "inTangentType": "fixed",
+            "inAngle": 0.0,
+            "inWeight": 1.0,
+            "outTangentType": "fixed",
+            "outAngle": 0.0,
+            "outWeight": 1.0
+        },
+        "50.0": {
+            "value": -12.431706351212327,
+            "inTangentType": "fixed",
+            "inAngle": 0.0,
+            "inWeight": 1.0,
+            "outTangentType": "fixed",
+            "outAngle": 0.0,
+            "outWeight": 1.0
+        },
+        "95.0": {
+            "value": -6.363526565337949,
+            "inTangentType": "fixed",
+            "inAngle": 0.0,
+            "inWeight": 1.0,
+            "outTangentType": "fixed",
+            "outAngle": 0.0,
+            "outWeight": 1.0
+        }
+    },
+    "rotateX": {
+        "1.0": {
+            "value": 0.0,
+            "inTangentType": "fixed",
+            "inAngle": 0.0,
+            "inWeight": 1.0,
+            "outTangentType": "fixed",
+            "outAngle": 0.0,
+            "outWeight": 1.0
+        },
+        "50.0": {
+            "value": 127.92890071709708,
+            "inTangentType": "fixed",
+            "inAngle": 89.95903625311189,
+            "inWeight": 1.0,
+            "outTangentType": "fixed",
+            "outAngle": 89.95903579412239,
+            "outWeight": 1.0
+        },
+        "95.0": {
+            "value": 310.4270951082232,
+            "inTangentType": "fixed",
+            "inAngle": 0.0,
+            "inWeight": 1.0,
+            "outTangentType": "fixed",
+            "outAngle": 0.0,
+            "outWeight": 1.0
+        }
+    },
+    "rotateY": {
+        "1.0": {
+            "value": 0.0,
+            "inTangentType": "fixed",
+            "inAngle": 0.0,
+            "inWeight": 1.0,
+            "outTangentType": "fixed",
+            "outAngle": 0.0,
+            "outWeight": 1.0
+        },
+        "50.0": {
+            "value": -38.18812845911487,
+            "inTangentType": "fixed",
+            "inAngle": 0.0,
+            "inWeight": 1.0,
+            "outTangentType": "fixed",
+            "outAngle": 0.0,
+            "outWeight": 1.0
+        },
+        "95.0": {
+            "value": 42.12071903723055,
+            "inTangentType": "fixed",
+            "inAngle": 0.0,
+            "inWeight": 1.0,
+            "outTangentType": "fixed",
+            "outAngle": 0.0,
+            "outWeight": 1.0
+        }
+    },
+    "rotateZ": {
+        "1.0": {
+            "value": 0.0,
+            "inTangentType": "fixed",
+            "inAngle": 0.0,
+            "inWeight": 1.0,
+            "outTangentType": "fixed",
+            "outAngle": 0.0,
+            "outWeight": 1.0
+        },
+        "50.0": {
+            "value": -73.82352226060932,
+            "inTangentType": "fixed",
+            "inAngle": 0.0,
+            "inWeight": 1.0,
+            "outTangentType": "fixed",
+            "outAngle": 0.0,
+            "outWeight": 1.0
+        },
+        "95.0": {
+            "value": 169.85332742733596,
+            "inTangentType": "fixed",
+            "inAngle": 87.71667073124445,
+            "inWeight": 1.0,
+            "outTangentType": "fixed",
+            "outAngle": 87.71667054463923,
+            "outWeight": 1.0
+        }
+    },
+    "scaleX": {
+        "1.0": {
+            "value": 1.0,
+            "inTangentType": "fixed",
+            "inAngle": 0.0,
+            "inWeight": 1.0,
+            "outTangentType": "fixed",
+            "outAngle": 0.0,
+            "outWeight": 1.0
+        },
+        "50.0": {
+            "value": 1.0,
+            "inTangentType": "fixed",
+            "inAngle": 0.0,
+            "inWeight": 1.0,
+            "outTangentType": "fixed",
+            "outAngle": 0.0,
+            "outWeight": 1.0
+        },
+        "95.0": {
+            "value": 1.0,
+            "inTangentType": "fixed",
+            "inAngle": 0.0,
+            "inWeight": 1.0,
+            "outTangentType": "fixed",
+            "outAngle": 0.0,
+            "outWeight": 1.0
+        }
+    },
+    "scaleY": {
+        "1.0": {
+            "value": 1.0,
+            "inTangentType": "fixed",
+            "inAngle": 0.0,
+            "inWeight": 1.0,
+            "outTangentType": "fixed",
+            "outAngle": 0.0,
+            "outWeight": 1.0
+        },
+        "50.0": {
+            "value": 1.0,
+            "inTangentType": "fixed",
+            "inAngle": 0.0,
+            "inWeight": 1.0,
+            "outTangentType": "fixed",
+            "outAngle": 0.0,
+            "outWeight": 1.0
+        },
+        "95.0": {
+            "value": 1.0,
+            "inTangentType": "fixed",
+            "inAngle": 0.0,
+            "inWeight": 1.0,
+            "outTangentType": "fixed",
+            "outAngle": 0.0,
+            "outWeight": 1.0
+        }
+    },
+    "scaleZ": {
+        "1.0": {
+            "value": 1.0,
+            "inTangentType": "fixed",
+            "inAngle": 0.0,
+            "inWeight": 1.0,
+            "outTangentType": "fixed",
+            "outAngle": 0.0,
+            "outWeight": 1.0
+        },
+        "50.0": {
+            "value": 1.0,
+            "inTangentType": "fixed",
+            "inAngle": 0.0,
+            "inWeight": 1.0,
+            "outTangentType": "fixed",
+            "outAngle": 0.0,
+            "outWeight": 1.0
+        },
+        "95.0": {
+            "value": 1.0,
+            "inTangentType": "fixed",
+            "inAngle": 0.0,
+            "inWeight": 1.0,
+            "outTangentType": "fixed",
+            "outAngle": 0.0,
+            "outWeight": 1.0
+        }
+    }
+}
