@@ -6,6 +6,7 @@ from . import scenedata, exporthandler
 class SceneDataController(QtCore.QObject):
     AnimatedObjectsList = QtCore.Signal(list)
     ObjectAnimationData = QtCore.Signal(str, dict)
+    ObjectNamesGathered = QtCore.Signal(list)
 
     def __init__(self):
         super().__init__()
@@ -15,20 +16,27 @@ class SceneDataController(QtCore.QObject):
 
 
     def emitAnimatedObjects(self):
-        _animatedObjects = scenedata.getAnimatedSceneObjects()
-        self.AnimatedObjectsList.emit(_animatedObjects)
+        _animatedObjects = exporthandler.getAnimatedSceneObjects()
+        self.ObjectNamesGathered.emit(_animatedObjects)
+
+
+    def emitAnimatableObjects(self):
+        _animatableObjects = exporthandler.getAnimatableSceneObjects()
+        self.ObjectNamesGathered.emit(_animatableObjects)
 
     def emitObjectAnimationData(self, objectName):
+        objectDataDict = {}
+        objectDataDict["Animated Attributes"] = exporthandler.getAnimatedObjectAttributes(objectName)
+
+        self.ObjectAnimationData.emit(objectName, objectDataDict)
         return
 
-    def exportObjectAnimationData(self, objectName, startFrame, endFrame):
-        objectName = 'pCube1'
+    def exportObjectAnimationData(self, objectName, filepath, startFrame, endFrame):
         exportHandler = exporthandler.AnimationPort(objectName=objectName)
-        exportHandler.exportCurveData(r"Q:\__packages\_GitHub\IW_AnimExporter\testdata.json")
+        exportHandler.exportCurveData(filepath)
         return
 
-    def importObjectAnimationData(self, objectName, keyframeOffset=0):
-        objectName = 'pCube1'
+    def importObjectAnimationData(self, objectName, filepath, keyframeOffset=0):
         portHandler = exporthandler.AnimationPort(objectName=objectName)
-        portHandler.importCurveData(filepath=r"Q:\__packages\_GitHub\IW_AnimExporter\testdata.json")
+        portHandler.importCurveData(filepath=filepath)
         return

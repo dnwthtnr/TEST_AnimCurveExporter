@@ -2,6 +2,34 @@ import maya.cmds as cmds
 import json
 from . import keys
 
+def getAnimatedSceneObjects():
+    """
+    Gets animated object names in current scene
+
+    Returns
+    -------
+    list[str]
+        The animated object names in the current scene
+
+    """
+    objects = cmds.ls(transforms=True, objectsOnly=True)
+    animatedObjects = [object for object in objects if cmds.keyframe(object, query=True, keyframeCount=True) > 0]
+    return animatedObjects
+
+def getAnimatableSceneObjects():
+    """
+    Gets animatable object names in current scene
+
+    Returns
+    -------
+    list[str]
+        The animatable object names in the current scene
+
+    """
+    objects = cmds.ls(transforms=True, objectsOnly=True)
+    animatedObjects = [object for object in objects if len(cmds.listAnimatable(object)) > 0]
+    return animatedObjects
+
 def isAnimatedAtrribute(attribute):
     return cmds.keyframe(attribute, query=True, keyframeCount=True) > 0
 
@@ -155,11 +183,3 @@ class AnimationPort(object):
                     outWeight=keyframeData.get(keys.keyOutWeight)
                 )
         return
-
-    def applyCurveData(self, keyframeOffset=0, attributes=None):
-
-        return
-
-scheme = {
-    "attr1": [ [1, 15.2], [2, 123.55] ]
-}

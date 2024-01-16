@@ -33,20 +33,21 @@ def setupWindow(inMayaUi):
 
     controller = exportapi.scenedatacontroller.SceneDataController()
 
-    controller.AnimatedObjectsList.connect(window.populateAnimatedObjects)
+    controller.ObjectNamesGathered.connect(window.populateAnimatedObjects)
+    controller.ObjectAnimationData.connect(window.populateObjectData)
 
     window.ObjectSelected.connect(controller.emitObjectAnimationData)
     window.ExportObjectAnimation.connect(controller.exportObjectAnimationData)
     window.ImportObjectAnimation.connect(controller.importObjectAnimationData)
+    window.ImportModeEnabled.connect(controller.emitAnimatableObjects)
+    window.ExportModeEnabled.connect(controller.emitAnimatedObjects)
 
     window.controller = controller  # keep instance
-    controller.initialize()
-    window.emitObjectSelected('pCube1')
+    window.finishInitialization()
     return window
 
 def main():
     isInMaya = inMayaUi()
-    print('yes')
 
     if not isInMaya:
 
