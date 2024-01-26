@@ -1,6 +1,25 @@
-import maya.cmds as cmds
 import json
-from . import keys
+
+import logging
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
+
+import maya.cmds as cmds
+
+
+# region KEYS
+
+attributeValueKey      = "value"
+keyInTangentTypeKey    = "inTangentType"
+keyInAngleKey          = "inAngle"
+keyInWeightKey         = "inWeight"
+keyOutTangentTypeKey   = "outTangentType"
+keyOutAngleKey         = "outAngle"
+keyOutWeightKey        = "outWeight"
+
+
+# endregion
+
 
 def getAnimatedSceneObjects():
     """
@@ -30,19 +49,35 @@ def getAnimatableSceneObjects():
     animatedObjects = [object for object in objects if len(cmds.listAnimatable(object)) > 0]
     return animatedObjects
 
-def isAnimatedAtrribute(attribute):
+def isAnimatedAttribute(attribute):
+    """
+    Whether attribute is animated
+    Parameters
+    ----------
+    attribute: str
+        Attribute to check
+
+    Returns
+    -------
+    bool
+        Whether attribute is animated
+
+    """
     return cmds.keyframe(attribute, query=True, keyframeCount=True) > 0
 
 def getAnimatedObjectAttributes(objectName):
     """
+    Gets attributes for the given object that are aniamted
 
     Parameters
     ----------
-    objectName
+    objectName: str
+        Object to get animated attributes of
 
     Returns
     -------
     list[str]
+        Attributes for the object that are animated
 
     """
     objectKeyableAttributes = cmds.listAttr(objectName, keyable=True)
@@ -51,12 +86,16 @@ def getAnimatedObjectAttributes(objectName):
 
 def getKeyframeCurveData(objectName, keyframeTime, attribute):
     """
+    Queries and collects the animation keyframe tangent data for the given object, keyframe, and attribute.
 
     Parameters
     ----------
-    objectName
-    keyframeTime
-    attribute
+    objectName: str
+        Object to get data from
+    keyframeTime: tuple(float)
+        Range that the keyframe falls into (Typically 2 of the same float)
+    attribute: str
+        Attribute to get the keyframe curve data of
 
     Returns
     -------
@@ -75,13 +114,13 @@ def getKeyframeCurveData(objectName, keyframeTime, attribute):
     keyOutWeight        = cmds.keyTangent(objectName, attribute=attribute, time=keyframeTime, query=True, outWeight=True)
 
     returnDict = {}
-    returnDict[keys.attributeValue]       = attributeValue
-    returnDict[keys.keyInTangentType]     = keyInTangentType[0]
-    returnDict[keys.keyInAngle]           = keyInAngle[0]
-    returnDict[keys.keyInWeight]          = keyInWeight[0]
-    returnDict[keys.keyOutTangentType]    = keyOutTangentType[0]
-    returnDict[keys.keyOutAngle]          = keyOutAngle[0]
-    returnDict[keys.keyOutWeight]         = keyOutWeight[0]
+    returnDict[attributeValueKey]       = attributeValue
+    returnDict[keyInTangentTypeKey]     = keyInTangentType[0]
+    returnDict[keyInAngleKey]           = keyInAngle[0]
+    returnDict[keyInWeightKey]          = keyInWeight[0]
+    returnDict[keyOutTangentTypeKey]    = keyOutTangentType[0]
+    returnDict[keyOutAngleKey]          = keyOutAngle[0]
+    returnDict[keyOutWeightKey]         = keyOutWeight[0]
 
     return returnDict
 
@@ -105,9 +144,9 @@ def getAttributeAnimationData(objectName, attribute, startFrame=None, endFrame=N
 
 
     for keyframeTime in keyframeTimes:
-        if startFrame != None and keyframeTime < startFrame:
+        if startFrame != None and keyframeTime < float(startFrame):
             continue
-        if endFrame != None and keyframeTime > endFrame:
+        if endFrame != None and keyframeTime > float(endFrame):
             continue
 
         # get curve data
@@ -145,7 +184,6 @@ class AnimationPort(object):
             The unique name for the target object
         """
         super().__init__()
-        print(objectName)
         self._targetObject = objectName
 
     def targetObject(self):
@@ -157,29 +195,41 @@ class AnimationPort(object):
     def exportCurveData(self, filepath, startFrame=None, endFrame=None, attributes=None):
         animatedAttributes = getAnimatedObjectAttributes(self.targetObject())
 
+        if attributes is None:
+            attributes = animatedAttributes
+
         animationCurveData = {}
-        for attr in animatedAttributes:
-            attributeCurveData = getAttributeAnimationData(self.targetObject(), attr)
+        for attr in attributes:
+            attributeCurveData = getAttributeAnimationData(
+                objectName=self.targetObject(),
+                startFrame=startFrame,
+                endFrame=endFrame,
+                attribute=attr
+            )
             animationCurveData[attr] = attributeCurveData
 
         writeJson(filepath, animationCurveData)
+        print("\n\nExport Complete\n\n")
 
     def importCurveData(self, filepath, keyframeOffset=0, attributes=None):
         animationCurveData = readJson(filepath)
         objectName = self.targetObject()
         for attr, animData in animationCurveData.items():
+            if isinstance(attr, list) and attr not in attributes:
+                continue
             for keyframeTime, keyframeData in animData.items():
-                attrValue = keyframeData.get(keys.attributeValue)
+                attrValue = keyframeData.get(attributeValueKey)
+                keyframeTime = float(keyframeTime) + float(keyframeOffset)
                 cmds.setKeyframe(objectName, attribute=attr, value=attrValue, time=keyframeTime)
                 cmds.keyTangent(
                     objectName,
                     attribute=attr,
                     time=(keyframeTime, keyframeTime),
-                    inTangentType=keyframeData.get(keys.keyInTangentType),
-                    inAngle=keyframeData.get(keys.keyInAngle),
-                    inWeight=keyframeData.get(keys.keyInWeight),
-                    outTangentType=keyframeData.get(keys.keyOutTangentType),
-                    outAngle=keyframeData.get(keys.keyOutAngle),
-                    outWeight=keyframeData.get(keys.keyOutWeight)
+                    inTangentType=keyframeData.get(keyInTangentTypeKey),
+                    inAngle=keyframeData.get(keyInAngleKey),
+                    inWeight=keyframeData.get(keyInWeightKey),
+                    outTangentType=keyframeData.get(keyOutTangentTypeKey),
+                    outAngle=keyframeData.get(keyOutAngleKey),
+                    outWeight=keyframeData.get(keyOutWeightKey)
                 )
         return

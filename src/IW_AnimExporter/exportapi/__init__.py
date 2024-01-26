@@ -1,1 +1,5 @@
-from . import scenedatacontroller
+import logging
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
+
+from . import scenedatacontroller, exporthandler

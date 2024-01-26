@@ -1,0 +1,22 @@
+
+*{
+background-color: @primary_50;
+color: @maya_white_text;
+}
+QListView::item{
+background-color: @primary_50;
+color: @maya_white_text;
+}
+QListView::item:hover{
+color: @maya_white_text;
+border: 3px solid @maya_light_blue_selection;
+}
+QListView::item:selected{
+background-color: @maya_blue_selection;
+color: @maya_white_text;
+}
+QLineEdit{
+background-color: @primary_25;
+color: @maya_white_text;
+border: none;
+}

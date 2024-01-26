@@ -1,0 +1,35 @@
+{
+  "InterfaceModes": {
+    "Export": {
+      "ModeName": "Export",
+      "ModeCommitButtonText": "Export",
+      "ControllerObjectFilterMethod": "_emitAnimatedObjects",
+      "ControllerPortMethod": "_exportObjectAnimationData",
+      "ModeAnimationDataDefaults": {
+        "Start Frame": 0,
+        "End Frame": 100,
+        "File Save Location": "file//SAVE//json"
+      }
+    },
+    "Import": {
+      "ModeName": "Import",
+      "ModeCommitButtonText": "Import",
+      "ControllerObjectFilterMethod": "_emitAnimatableObjects",
+      "ControllerPortMethod": "_importObjectAnimationData",
+      "ModeAnimationDataDefaults": {
+        "Frame Offset": 0,
+        "Animation File": "file//SELECT//json"
+      }
+    }
+  },
+  "LockedAttributes": [
+    "Object Name"
+  ],
+  "DefaultName": "NAME",
+  "FileExt": "json",
+
+  "AppName": "AnimCurveExporter",
+  "WindowSize": [970, 570],
+  "": "",
+  "": ""
+}

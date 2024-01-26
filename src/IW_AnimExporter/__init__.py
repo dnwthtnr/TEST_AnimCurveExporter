@@ -1,9 +1,9 @@
-print("hello world1")
 import sys, os
 from PySide2 import QtWidgets, QtCore
 import maya.cmds as cmds
 import maya.OpenMayaUI as omui
 from shiboken2 import wrapInstance
+
 
 
 if os.path.dirname(__file__) not in sys.path:
@@ -19,7 +19,6 @@ def inMayaUi():
         maya.standalone.initialize()
         return False
     except Exception as e:
-        print(e)
         return True
 
 def setupWindow(inMayaUi):
@@ -35,12 +34,12 @@ def setupWindow(inMayaUi):
 
     controller.ObjectNamesGathered.connect(window.populateAnimatedObjects)
     controller.ObjectAnimationData.connect(window.populateObjectData)
+    controller.SetCommitButtonText.connect(window.setPortCommitButtonText)
+    controller.InterfaceModeChanged.connect(window.emptyPortPanelData)
 
     window.ObjectSelected.connect(controller.emitObjectAnimationData)
-    window.ExportObjectAnimation.connect(controller.exportObjectAnimationData)
-    window.ImportObjectAnimation.connect(controller.importObjectAnimationData)
-    window.ImportModeEnabled.connect(controller.emitAnimatableObjects)
-    window.ExportModeEnabled.connect(controller.emitAnimatedObjects)
+    window.PortCommitButtonClicked.connect(controller.portObjectAnimationData)
+    window.InterfaceModeChanged.connect(controller.setInterfaceMode)
 
     window.controller = controller  # keep instance
     window.finishInitialization()
@@ -54,9 +53,7 @@ def main():
         cmds.file(file, open=True, force=True)
         app = QtWidgets.QApplication(sys.argv)
         window = setupWindow(isInMaya)
-        print('setup')
         window.show()
-        print(window.isVisible())
         sys.exit(app.exec_())
 
     else:
