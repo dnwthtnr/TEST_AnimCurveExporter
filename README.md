@@ -1,7 +1,13 @@
 # AnimCurveExporter
 
+    # Description
+    
+    This tool was created as a technical test to be able to export and import animation curve data onto objects 
+    in Autodesk Maya. The goal time allotted was 6hrs and this was completed within that time frame.
 
-    # This tool was developed using python 3.7 and tested within Maya 2022.1.
+
+    # This tool was developed using Python 3.7 and tested within Autodesk Maya 2022.1.
+
 
     # Setup
 
